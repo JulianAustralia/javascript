@@ -1,8 +1,10 @@
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/airbnb/javascript?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-# Airbnb JavaScript Style Guide() {
+# Julian's JavaScript Style Guide() {
 
 *A mostly reasonable approach to JavaScript*
+*A fork of the AirBNB Javascript Style Guide*
+*The original can be found at https://github.com/airbnb/javascript*
 
 
 ## Table of Contents
@@ -32,12 +34,8 @@
   1. [Testing](#testing)
   1. [Performance](#performance)
   1. [Resources](#resources)
-  1. [In the Wild](#in-the-wild)
-  1. [Translation](#translation)
   1. [The JavaScript Style Guide Guide](#the-javascript-style-guide-guide)
-  1. [Chat With Us About Javascript](#chat-with-us-about-javascript)
-  1. [Contributors](#contributors)
-  1. [License](#license)
+  1. [Original License](#license)
 
 ## Types
 
@@ -157,6 +155,7 @@
 
     // bad
     for (i = 0; i < len; i++) {
+
       itemsCopy[i] = items[i];
     }
 
@@ -168,6 +167,7 @@
 
     ```javascript
     function trigger() {
+
       var args = Array.prototype.slice.call(arguments);
       ...
     }
@@ -236,9 +236,11 @@
 
     // bad
     function inbox(messages) {
+
       items = '<ul>';
 
       for (i = 0; i < length; i++) {
+
         items += '<li>' + messages[i].message + '</li>';
       }
 
@@ -247,9 +249,11 @@
 
     // good
     function inbox(messages) {
+
       items = [];
 
       for (i = 0; i < length; i++) {
+
         items[i] = '<li>' + messages[i].message + '</li>';
       }
 
@@ -267,16 +271,19 @@
     ```javascript
     // anonymous function expression
     var anonymous = function() {
+
       return true;
     };
 
     // named function expression
     var named = function named() {
+
       return true;
     };
 
     // immediately-invoked function expression (IIFE)
     (function() {
+
       console.log('Welcome to the Internet. Please follow me.');
     })();
     ```
@@ -287,14 +294,18 @@
     ```javascript
     // bad
     if (currentUser) {
+
       function test() {
+
         console.log('Nope.');
       }
     }
 
     // good
     var test;
+
     if (currentUser) {
+
       test = function test() {
         console.log('Yup.');
       };
@@ -306,11 +317,13 @@
     ```javascript
     // bad
     function nope(name, options, arguments) {
+
       // ...stuff...
     }
 
     // good
     function yup(name, options, args) {
+
       // ...stuff...
     }
     ```
@@ -345,6 +358,7 @@
     };
 
     function getProp(prop) {
+
       return luke[prop];
     }
 
@@ -417,6 +431,7 @@
     ```javascript
     // bad
     function() {
+
       test();
       console.log('doing stuff..');
 
@@ -425,6 +440,7 @@
       var name = getName();
 
       if (name === 'test') {
+
         return false;
       }
 
@@ -433,6 +449,7 @@
 
     // good
     function() {
+
       var name = getName();
 
       test();
@@ -441,6 +458,7 @@
       //..other stuff..
 
       if (name === 'test') {
+
         return false;
       }
 
@@ -449,9 +467,11 @@
 
     // bad
     function() {
+
       var name = getName();
 
       if (!arguments.length) {
+
         return false;
       }
 
@@ -460,7 +480,9 @@
 
     // good
     function() {
+
       if (!arguments.length) {
+
         return false;
       }
 
@@ -481,6 +503,7 @@
     // we know this wouldn't work (assuming there
     // is no notDefined global variable)
     function example() {
+
       console.log(notDefined); // => throws a ReferenceError
     }
 
@@ -489,6 +512,7 @@
     // variable hoisting. Note: the assignment
     // value of `true` is not hoisted.
     function example() {
+
       console.log(declaredButNotAssigned); // => undefined
       var declaredButNotAssigned = true;
     }
@@ -497,6 +521,7 @@
     // declaration to the top of the scope,
     // which means our example could be rewritten as:
     function example() {
+
       var declaredButNotAssigned;
       console.log(declaredButNotAssigned); // => undefined
       declaredButNotAssigned = true;
@@ -507,11 +532,13 @@
 
     ```javascript
     function example() {
+
       console.log(anonymous); // => undefined
 
       anonymous(); // => TypeError anonymous is not a function
 
       var anonymous = function() {
+
         console.log('anonymous function expression');
       };
     }
@@ -521,6 +548,7 @@
 
     ```javascript
     function example() {
+
       console.log(named); // => undefined
 
       named(); // => TypeError named is not a function
@@ -528,6 +556,7 @@
       superPower(); // => ReferenceError superPower is not defined
 
       var named = function superPower() {
+
         console.log('Flying');
       };
     }
@@ -535,11 +564,13 @@
     // the same is true when the function name
     // is the same as the variable name.
     function example() {
+
       console.log(named); // => undefined
 
       named(); // => TypeError named is not a function
 
       var named = function named() {
+
         console.log('named');
       }
     }
@@ -549,9 +580,11 @@
 
     ```javascript
     function example() {
+
       superPower(); // => Flying
 
       function superPower() {
+
         console.log('Flying');
       }
     }
@@ -587,21 +620,25 @@
     ```javascript
     // bad
     if (name !== '') {
+
       // ...stuff...
     }
 
     // good
     if (name) {
+
       // ...stuff...
     }
 
     // bad
     if (collection.length > 0) {
+
       // ...stuff...
     }
 
     // good
     if (collection.length) {
+
       // ...stuff...
     }
     ```
@@ -613,18 +650,19 @@
 
 ## Blocks
 
-  - Use braces with all multi-line blocks.
+  - Use braces with all blocks.
 
     ```javascript
     // bad
     if (test)
       return false;
 
-    // good
+    // bad
     if (test) return false;
 
     // good
     if (test) {
+
       return false;
     }
 
@@ -633,6 +671,7 @@
 
     // good
     function() {
+
       return false;
     }
     ```
@@ -652,9 +691,11 @@
 
     // good
     if (test) {
+
       thing1();
       thing2();
     } else {
+
       thing3();
     }
     ```
@@ -709,6 +750,7 @@
 
     // bad
     function getType() {
+
       console.log('fetching type...');
       // set the default type to 'no type'
       var type = this._type || 'no type';
@@ -718,6 +760,7 @@
 
     // good
     function getType() {
+
       console.log('fetching type...');
 
       // set the default type to 'no type'
@@ -763,16 +806,19 @@
     ```javascript
     // bad
     function() {
+
     ∙∙∙∙var name;
     }
 
     // bad
     function() {
+
     ∙var name;
     }
 
     // good
     function() {
+
     ∙∙var name;
     }
     ```
@@ -782,11 +828,13 @@
     ```javascript
     // bad
     function test(){
+
       console.log('test');
     }
 
     // good
     function test() {
+
       console.log('test');
     }
 
@@ -808,21 +856,25 @@
     ```javascript
     // bad
     if(isJedi) {
+
       fight ();
     }
 
     // good
     if (isJedi) {
+
       fight();
     }
 
     // bad
     function fight () {
+
       console.log ('Swooosh!');
     }
 
     // good
     function fight() {
+
       console.log('Swooosh!');
     }
     ```
@@ -842,6 +894,7 @@
     ```javascript
     // bad
     (function(global) {
+
       // ...stuff...
     })(this);
     ```
@@ -849,6 +902,7 @@
     ```javascript
     // bad
     (function(global) {
+
       // ...stuff...
     })(this);↵
     ↵
@@ -857,6 +911,7 @@
     ```javascript
     // good
     (function(global) {
+
       // ...stuff...
     })(this);↵
     ```
@@ -901,7 +956,7 @@
         .call(tron.led);
     ```
 
-  - Leave a blank line after blocks and before the next statement
+  - Leave a blank line after non-object blocks and before the next statement, and before every return statement, and at the opening of non-empty non-object blocks
 
     ```javascript
     // bad
@@ -910,8 +965,16 @@
     }
     return baz;
 
+    // still bad but better
+    if (foo) {
+      return bar;
+    }
+
+    return baz;
+
     // good
     if (foo) {
+
       return bar;
     }
 
@@ -920,8 +983,10 @@
     // bad
     var obj = {
       foo: function() {
+        return 'baz';
       },
       bar: function() {
+        return 'qux';
       }
     };
     return obj;
@@ -929,9 +994,12 @@
     // good
     var obj = {
       foo: function() {
-      },
 
+        return 'baz';
+      },
       bar: function() {
+
+        return 'qux';
       }
     };
 
@@ -1015,19 +1083,25 @@
     ```javascript
     // bad
     (function() {
+
       var name = 'Skywalker'
+
       return name
     })()
 
     // good
     (function() {
+
       var name = 'Skywalker';
+
       return name;
     })();
 
     // good (guards against the function becoming an argument when two files with IIFEs are concatenated)
     ;(function() {
+
       var name = 'Skywalker';
+
       return name;
     })();
     ```
@@ -1127,11 +1201,13 @@
     ```javascript
     // bad
     function q() {
+
       // ...stuff...
     }
 
     // good
     function query() {
+
       // ..stuff..
     }
     ```
@@ -1160,6 +1236,7 @@
     ```javascript
     // bad
     function user(options) {
+
       this.name = options.name;
     }
 
@@ -1169,6 +1246,7 @@
 
     // good
     function User(options) {
+
       this.name = options.name;
     }
 
@@ -1188,31 +1266,60 @@
     this._firstName = 'Panda';
     ```
 
-  - When saving a reference to `this` use `_this`.
+  - When saving a reference to `this` use `_this`. Or better yet, if appropriate use bind on the function. Add a bind polyfill for unsuported browsers e.g. IE < 9
 
     ```javascript
     // bad
     function() {
+
       var self = this;
+
       return function() {
+
         console.log(self);
       };
     }
 
     // bad
     function() {
+
       var that = this;
+
       return function() {
+
         console.log(that);
       };
     }
 
     // good
     function() {
+
       var _this = this;
+
       return function() {
+
         console.log(_this);
       };
+    }
+
+    // better
+    function() {
+
+      return (function () {
+
+        console.log(this);
+      }).bind(this);
+    }
+
+    // This allows easy function extraction should it be desired. Like below:
+    function _innerLogger() {
+
+      console.log(this);
+    }
+
+    function () {
+
+      return (_innerLogger).bind(this);
     }
     ```
 
@@ -1221,11 +1328,13 @@
     ```javascript
     // bad
     var log = function(msg) {
+
       console.log(msg);
     };
 
     // good
     var log = function log(msg) {
+
       console.log(msg);
     };
     ```
@@ -1236,6 +1345,7 @@
     ```javascript
     // file contents
     class CheckBox {
+
       // ...
     }
     module.exports = CheckBox;
@@ -1278,11 +1388,13 @@
     ```javascript
     // bad
     if (!dragon.age()) {
+
       return false;
     }
 
     // good
     if (!dragon.hasAge()) {
+
       return false;
     }
     ```
@@ -1291,16 +1403,17 @@
 
     ```javascript
     function Jedi(options) {
-      options || (options = {});
-      var lightsaber = options.lightsaber || 'blue';
-      this.set('lightsaber', lightsaber);
+
+      this.set('lightsaber', options && options.lightsaber || 'blue');
     }
 
     Jedi.prototype.set = function(key, val) {
+
       this[key] = val;
     };
 
     Jedi.prototype.get = function(key) {
+
       return this[key];
     };
     ```
@@ -1310,32 +1423,59 @@
 
 ## Constructors
 
-  - Assign methods to the prototype object, instead of overwriting the prototype with a new object. Overwriting the prototype makes inheritance impossible: by resetting the prototype you'll overwrite the base!
+  - Override the existing prototype when not inheriting. If inheritting add an extend function like below, this will clone the existing prototype, and is more readable than assigning new methods, but it does require more work at script load. It also allows adding extra functions passed as objects.
 
     ```javascript
     function Jedi() {
+
       console.log('new jedi');
     }
 
-    // bad
+    // Good if not inheriting
     Jedi.prototype = {
       fight: function fight() {
+
         console.log('fighting');
       },
-
       block: function block() {
+
         console.log('blocking');
       }
     };
 
-    // good
-    Jedi.prototype.fight = function fight() {
-      console.log('fighting');
+    // Good if inheriting
+    function _extend(existingPrototype) {
+
+      // clones the existing proto, any changes to the existing proto will change in the cloned proto aswell.
+      var clone = Object.create(existingPrototype);
+
+      Array.prototype.slice.call(arguments, 1).forEach(function (arg) {
+
+        for (var key in arg) {
+
+          clone[key] = arg[key];
+        }
+      });
+
+      return clone
+    }
+
+    Jedi.prototype = _extend(
+      Person.prototype,
+      {
+        fight: function fight() {
+
+          console.log('fighting');
+        },
+        block: function block() {
+
+          console.log('blocking');
+        }
+      },
+      anotherMap
     };
 
-    Jedi.prototype.block = function block() {
-      console.log('blocking');
-    };
+
     ```
 
   - Methods can return `this` to help with method chaining.
@@ -1343,11 +1483,14 @@
     ```javascript
     // bad
     Jedi.prototype.jump = function() {
+
       this.jumping = true;
+
       return true;
     };
 
     Jedi.prototype.setHeight = function(height) {
+
       this.height = height;
     };
 
@@ -1357,12 +1500,16 @@
 
     // good
     Jedi.prototype.jump = function() {
+
       this.jumping = true;
+
       return this;
     };
 
     Jedi.prototype.setHeight = function(height) {
+
       this.height = height;
+
       return this;
     };
 
@@ -1377,15 +1524,17 @@
 
     ```javascript
     function Jedi(options) {
-      options || (options = {});
-      this.name = options.name || 'no name';
+
+      this.name = options && options.name || 'no name';
     }
 
     Jedi.prototype.getName = function getName() {
+
       return this.name;
     };
 
     Jedi.prototype.toString = function toString() {
+
       return 'Jedi - ' + this.getName();
     };
     ```
@@ -1404,6 +1553,7 @@
     ...
 
     $(this).on('listingUpdated', function(e, listingId) {
+
       // do something with listingId
     });
     ```
@@ -1417,6 +1567,7 @@
     ...
 
     $(this).on('listingUpdated', function(e, data) {
+
       // do something with data.listingId
     });
     ```
@@ -1440,11 +1591,14 @@
       var previousFancyInput = global.FancyInput;
 
       function FancyInput(options) {
+
         this.options = options || {};
       }
 
       FancyInput.noConflict = function noConflict() {
+
         global.FancyInput = previousFancyInput;
+
         return FancyInput;
       };
 
@@ -1530,6 +1684,7 @@
 
     ```javascript
     function() {
+
       return true;
     }
     ```
@@ -1626,91 +1781,11 @@
 
 **[⬆ back to top](#table-of-contents)**
 
-## In the Wild
-
-  This is a list of organizations that are using this style guide. Send us a pull request or open an issue and we'll add you to the list.
-
-  - **Aan Zee**: [AanZee/javascript](https://github.com/AanZee/javascript)
-  - **Adult Swim**: [adult-swim/javascript](https://github.com/adult-swim/javascript)
-  - **Airbnb**: [airbnb/javascript](https://github.com/airbnb/javascript)
-  - **American Insitutes for Research**: [AIRAST/javascript](https://github.com/AIRAST/javascript)
-  - **Apartmint**: [apartmint/javascript](https://github.com/apartmint/javascript)
-  - **Avalara**: [avalara/javascript](https://github.com/avalara/javascript)
-  - **Compass Learning**: [compasslearning/javascript-style-guide](https://github.com/compasslearning/javascript-style-guide)
-  - **DailyMotion**: [dailymotion/javascript](https://github.com/dailymotion/javascript)
-  - **Digitpaint** [digitpaint/javascript](https://github.com/digitpaint/javascript)
-  - **Evernote**: [evernote/javascript-style-guide](https://github.com/evernote/javascript-style-guide)
-  - **ExactTarget**: [ExactTarget/javascript](https://github.com/ExactTarget/javascript)
-  - **Flexberry**: [Flexberry/javascript-style-guide](https://github.com/Flexberry/javascript-style-guide)
-  - **Gawker Media**: [gawkermedia/javascript](https://github.com/gawkermedia/javascript)
-  - **GeneralElectric**: [GeneralElectric/javascript](https://github.com/GeneralElectric/javascript)
-  - **GoodData**: [gooddata/gdc-js-style](https://github.com/gooddata/gdc-js-style)
-  - **Grooveshark**: [grooveshark/javascript](https://github.com/grooveshark/javascript)
-  - **How About We**: [howaboutwe/javascript](https://github.com/howaboutwe/javascript)
-  - **InfoJobs**: [InfoJobs/JavaScript-Style-Guide](https://github.com/InfoJobs/JavaScript-Style-Guide)
-  - **Intent Media**: [intentmedia/javascript](https://github.com/intentmedia/javascript)
-  - **Jam3**: [Jam3/Javascript-Code-Conventions](https://github.com/Jam3/Javascript-Code-Conventions)
-  - **Kinetica Solutions**: [kinetica/javascript](https://github.com/kinetica/javascript)
-  - **Mighty Spring**: [mightyspring/javascript](https://github.com/mightyspring/javascript)
-  - **MinnPost**: [MinnPost/javascript](https://github.com/MinnPost/javascript)
-  - **ModCloth**: [modcloth/javascript](https://github.com/modcloth/javascript)
-  - **Money Advice Service**: [moneyadviceservice/javascript](https://github.com/moneyadviceservice/javascript)
-  - **Muber**: [muber/javascript](https://github.com/muber/javascript)
-  - **National Geographic**: [natgeo/javascript](https://github.com/natgeo/javascript)
-  - **National Park Service**: [nationalparkservice/javascript](https://github.com/nationalparkservice/javascript)
-  - **Nimbl3**: [nimbl3/javascript](https://github.com/nimbl3/javascript)
-  - **Nordic Venture Family**: [CodeDistillery/javascript](https://github.com/CodeDistillery/javascript)
-  - **Orion Health**: [orionhealth/javascript](https://github.com/orionhealth/javascript)
-  - **Peerby**: [Peerby/javascript](https://github.com/Peerby/javascript)
-  - **Razorfish**: [razorfish/javascript-style-guide](https://github.com/razorfish/javascript-style-guide)
-  - **reddit**: [reddit/styleguide/javascript](https://github.com/reddit/styleguide/tree/master/javascript)
-  - **REI**: [reidev/js-style-guide](https://github.com/reidev/js-style-guide)
-  - **Ripple**: [ripple/javascript-style-guide](https://github.com/ripple/javascript-style-guide)
-  - **SeekingAlpha**: [seekingalpha/javascript-style-guide](https://github.com/seekingalpha/javascript-style-guide)
-  - **Shutterfly**: [shutterfly/javascript](https://github.com/shutterfly/javascript)
-  - **StudentSphere**: [studentsphere/javascript](https://github.com/studentsphere/javascript)
-  - **Target**: [target/javascript](https://github.com/target/javascript)
-  - **TheLadders**: [TheLadders/javascript](https://github.com/TheLadders/javascript)
-  - **T4R Technology**: [T4R-Technology/javascript](https://github.com/T4R-Technology/javascript)
-  - **Userify**: [userify/javascript](https://github.com/userify/javascript)
-  - **VoxFeed**: [VoxFeed/javascript-style-guide](https://github.com/VoxFeed/javascript-style-guide)
-  - **Weggo**: [Weggo/javascript](https://github.com/Weggo/javascript)
-  - **Zillow**: [zillow/javascript](https://github.com/zillow/javascript)
-  - **ZocDoc**: [ZocDoc/javascript](https://github.com/ZocDoc/javascript)
-
-## Translation
-
-  This style guide is also available in other languages:
-
-  - ![br](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Brazil.png) **Brazilian Portuguese**: [armoucar/javascript-style-guide](https://github.com/armoucar/javascript-style-guide)
-  - ![bg](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Bulgaria.png) **Bulgarian**: [borislavvv/javascript](https://github.com/borislavvv/javascript)
-  - ![ca](https://raw.githubusercontent.com/fpmweb/javascript-style-guide/master/img/catala.png) **Catalan**: [fpmweb/javascript-style-guide](https://github.com/fpmweb/javascript-style-guide)
-  - ![tw](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Taiwan.png) **Chinese(Traditional)**: [jigsawye/javascript](https://github.com/jigsawye/javascript)
-  - ![cn](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/China.png) **Chinese(Simplified)**: [adamlu/javascript-style-guide](https://github.com/adamlu/javascript-style-guide)
-  - ![fr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/France.png) **French**: [nmussy/javascript-style-guide](https://github.com/nmussy/javascript-style-guide)
-  - ![de](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Germany.png) **German**: [timofurrer/javascript-style-guide](https://github.com/timofurrer/javascript-style-guide)
-  - ![it](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Italy.png) **Italian**: [sinkswim/javascript-style-guide](https://github.com/sinkswim/javascript-style-guide)
-  - ![jp](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Japan.png) **Japanese**: [mitsuruog/javacript-style-guide](https://github.com/mitsuruog/javacript-style-guide)
-  - ![kr](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/South-Korea.png) **Korean**: [tipjs/javascript-style-guide](https://github.com/tipjs/javascript-style-guide)
-  - ![pl](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Poland.png) **Polish**: [mjurczyk/javascript](https://github.com/mjurczyk/javascript)
-  - ![ru](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Russia.png) **Russian**: [uprock/javascript](https://github.com/uprock/javascript)
-  - ![es](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Spain.png) **Spanish**: [paolocarrasco/javascript-style-guide](https://github.com/paolocarrasco/javascript-style-guide)
-  - ![th](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Thailand.png) **Thai**: [lvarayut/javascript-style-guide](https://github.com/lvarayut/javascript-style-guide)
-
 ## The JavaScript Style Guide Guide
 
   - [Reference](https://github.com/airbnb/javascript/wiki/The-JavaScript-Style-Guide-Guide)
 
-## Chat With Us About JavaScript
-
-  - Find us on [gitter](https://gitter.im/airbnb/javascript).
-
-## Contributors
-
-  - [View Contributors](https://github.com/airbnb/javascript/graphs/contributors)
-
-
-## License
+## Original License
 
 (The MIT License)
 
